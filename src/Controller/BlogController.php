@@ -95,4 +95,24 @@ class BlogController extends AbstractController
             self::POSTS[array_search($slug, array_column(self::POSTS, 'slug'))]
         );
     }
+
+    /**
+     * @Route("/add", name="blog_add", methods={"GET","POST"})
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function add(Request $request): JsonResponse
+    {
+        /** @var Serializer $serializer */
+        $serializer = $this->get('serializer');
+
+        /** @see https://symfony.com/doc/current/components/serializer.html */
+        $blogPost = $serializer->deserialize($request->getContent(), BlogPost::class, 'json');
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($blogPost);
+        $em->flush();
+
+        return $this->json($blogPost);
+    }
 }

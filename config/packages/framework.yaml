@@ -11,6 +11,10 @@ framework:
         cookie_secure: auto
         cookie_samesite: lax
 
+    # Allows serializer identify data type of properties
+    property_info:
+        enabled: true
+
     #esi: true
     #fragments: true
     php_errors:
