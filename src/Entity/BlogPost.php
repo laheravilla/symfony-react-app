@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Composition\AuthorComposition;
 use App\Repository\BlogPostRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -12,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class BlogPost
 {
+    use AuthorComposition;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -28,11 +31,6 @@ class BlogPost
      * @ORM\Column(type="datetime", nullable=true, options={"default": "CURRENT_TIMESTAMP"})
      */
     private $createdAt;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $author;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -70,17 +68,6 @@ class BlogPost
     {
         $this->createdAt = $createdAt;
 
-        return $this;
-    }
-
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(string $author): self
-    {
-        $this->author = $author;
         return $this;
     }
 
