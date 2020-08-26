@@ -79,7 +79,6 @@ class BlogPost
     public function setAuthor(string $author): self
     {
         $this->author = $author;
-
         return $this;
     }
 
@@ -94,8 +93,9 @@ class BlogPost
     /**
      * @param mixed $slug
      */
-    public function setSlug($slug): void
+    public function setSlug($slug): self
     {
         $this->slug = $slug;
+        return $this;
     }
 }
