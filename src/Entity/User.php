@@ -125,4 +125,9 @@ class User
     {
         return $this->comments;
     }
+
+    public function __toString(): string
+    {
+        return $this->userName;
+    }
 }
