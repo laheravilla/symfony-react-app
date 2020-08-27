@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3f477cc5-ed23-472b-be24-e998a6e5c54f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/BlogPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/BlogPost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,7 +154,7 @@
       <workItem from="1598340965864" duration="702000" />
       <workItem from="1598380752872" duration="335000" />
       <workItem from="1598409727707" duration="1305000" />
-      <workItem from="1598496779956" duration="2263000" />
+      <workItem from="1598496779956" duration="3304000" />
     </task>
     <servers />
   </component>
@@ -162,10 +162,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1598324537194">
+    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1598498858839">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598324537194" />
+    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598498858839" />
     <state x="2422" y="265" width="519" height="547" key="NewPhpClassDialog" timestamp="1598241415361">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>

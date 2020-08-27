@@ -11,7 +11,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ApiResource()
+ *
+ * Allows GET method. All non listed methods do not have a route
+ * @ApiResource(
+ *     itemOperations={"get"},
+ *     collectionOperations={}
+ * )
  */
 class User implements UserInterface
 {

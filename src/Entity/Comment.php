@@ -9,7 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
- * @ApiResource()
+ *
+ * Allows GET method. All non listed methods do not have a route
+ * @ApiResource(
+ *     itemOperations={"get"},
+ *     collectionOperations={"get"}
+ * )
  */
 class Comment
 {
