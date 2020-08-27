@@ -8,14 +8,22 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  *
  * Allows GET method. All non listed methods do not have a route
+ * Serialization: convert object to json
+ * Normalization: convert object into array
+ * Encoding: convert array into json
+ * Groups allows to read only allowed data
  * @ApiResource(
  *     itemOperations={"get"},
- *     collectionOperations={}
+ *     collectionOperations={},
+ *     normalizationContext={
+            "groups"={"read"}
+ *     }
  * )
  */
 class User implements UserInterface
@@ -24,11 +32,13 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $userName;
 
@@ -39,21 +49,25 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $fullName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"read"})
      */
     private $email;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\BlogPost", mappedBy="author")
+     * @Groups({"read"})
      */
     private $posts;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="author")
+     * @Groups({"read"})
      */
     private $comments;
 
