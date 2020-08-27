@@ -18,9 +18,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * Normalization: convert object into array
  * Encoding: convert array into json
  * Groups allows to read only allowed data
+ *
  * @ApiResource(
  *     itemOperations={"get"},
- *     collectionOperations={},
+ *     collectionOperations={"post"},
  *     normalizationContext={
             "groups"={"read"}
  *     }

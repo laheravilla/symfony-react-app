@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="3f477cc5-ed23-472b-be24-e998a6e5c54f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/PasswordHashSubscriber.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
     </list>
@@ -152,21 +171,32 @@
       <workItem from="1598340965864" duration="702000" />
       <workItem from="1598380752872" duration="335000" />
       <workItem from="1598409727707" duration="1305000" />
-      <workItem from="1598496779956" duration="4382000" />
+      <workItem from="1598496779956" duration="5558000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1598498858839">
+    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser" timestamp="1598501831252">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598498858839" />
-    <state x="2422" y="265" width="519" height="547" key="NewPhpClassDialog" timestamp="1598241415361">
+    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598501831252" />
+    <state x="2422" y="265" width="549" height="547" key="NewPhpClassDialog" timestamp="1598501779310">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state x="2422" y="265" width="519" height="547" key="NewPhpClassDialog/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598241415361" />
+    <state x="2422" y="265" width="549" height="547" key="NewPhpClassDialog/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598501779310" />
   </component>
 </project>
