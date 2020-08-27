@@ -7,9 +7,19 @@ use App\Entity\Comment;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    /** @var UserPasswordEncoderInterface */
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $this->loadUsers($manager);
@@ -69,12 +79,12 @@ class AppFixtures extends Fixture
             $user = new User();
             if ($i === 0) {
                 $user->setUserName('admin');
-                $user->setPassword('admin');
+                $user->setPassword($this->passwordEncoder->encodePassword($user, 'admin'));
                 $user->setEmail('admin@mail.com');
                 $user->setFullName('Admin');
             } else {
                 $user->setUserName($fullNames[$i]);
-                $user->setPassword('pass');
+                $user->setPassword($this->passwordEncoder->encodePassword($user, 'pass'));
                 $user->setEmail(strtolower(str_replace(' ', '.', $fullNames[$i])).'@mail.com');
                 $user->setFullName($fullNames[$i]);
             }
