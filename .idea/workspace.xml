@@ -20,9 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f477cc5-ed23-472b-be24-e998a6e5c54f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/routes/jwt.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/jwt.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Composition/AuthorComposition.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Composition/AuthorComposition.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/BlogPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/BlogPost.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/AuthoredEntitySubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +174,7 @@
       <workItem from="1598380752872" duration="335000" />
       <workItem from="1598409727707" duration="1305000" />
       <workItem from="1598496779956" duration="8446000" />
-      <workItem from="1598583333549" duration="6179000" />
+      <workItem from="1598583333549" duration="7305000" />
     </task>
     <servers />
   </component>
@@ -195,14 +194,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2400" y="248" width="408" height="588" key="#com.intellij.ide.util.MemberChooser" timestamp="1598503631269">
+    <state x="2400" y="248" width="408" height="588" key="#com.intellij.ide.util.MemberChooser" timestamp="1598590097315">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598501831252" />
+    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598590097315" />
     <state x="2400" y="248" width="408" height="588" key="#com.intellij.ide.util.MemberChooser/0.27.1366.721/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598503631269" />
-    <state x="2422" y="265" width="549" height="547" key="NewPhpClassDialog" timestamp="1598501779310">
+    <state x="2422" y="265" width="549" height="547" key="NewPhpClassDialog" timestamp="1598590045784">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>
-    <state x="2422" y="265" width="549" height="547" key="NewPhpClassDialog/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598501779310" />
+    <state x="2422" y="265" width="549" height="547" key="NewPhpClassDialog/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598590045784" />
   </component>
 </project>
