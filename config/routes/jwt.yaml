@@ -1,6 +1,2 @@
 api_login_check:
   path: /api/login_check
-
-api_blog_posts:
-  path: /api/blog_posts
-  methods: [GET, POST]
