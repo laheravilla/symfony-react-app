@@ -24,7 +24,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Groups allows to read only allowed data
  *
  * @ApiResource(
- *     itemOperations={"get"},
+ *     itemOperations={
+ *     "get"={
+            "access_control"="is_granted('IS_AUTHENTICATED_FULLY')"
+ *     }
+ * },
  *     collectionOperations={"post"},
  *     normalizationContext={
             "groups"={"read"}
