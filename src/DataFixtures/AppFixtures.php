@@ -78,13 +78,13 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < count($fullNames); $i++) {
             $user = new User();
             if ($i === 0) {
-                $user->setUserName('admin');
+                $user->setUsername('admin');
                 $user->setPassword($this->passwordEncoder->encodePassword($user, 'admin'));
                 $user->setRetypePassword($this->passwordEncoder->encodePassword($user, 'admin'));
                 $user->setEmail('admin@mail.com');
                 $user->setFullName('Admin');
             } else {
-                $user->setUserName($fullNames[$i]);
+                $user->setUsername(strtolower(str_replace(' ', '.', $fullNames[$i])));
                 $user->setPassword($this->passwordEncoder->encodePassword($user, 'pass'));
                 $user->setRetypePassword($this->passwordEncoder->encodePassword($user, 'pass'));
                 $user->setEmail(strtolower(str_replace(' ', '.', $fullNames[$i])).'@mail.com');

@@ -47,7 +47,7 @@ class User implements UserInterface
      * @Assert\NotBlank()
      * @Assert\Length(min=6, max=255)
      */
-    private $userName;
+    private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -106,14 +106,14 @@ class User implements UserInterface
         return $this->id;
     }
 
-    public function getUserName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->userName;
+        return $this->username;
     }
 
-    public function setUserName(string $userName): self
+    public function setUsername(string $username): self
     {
-        $this->userName = $userName;
+        $this->username = $username;
 
         return $this;
     }
@@ -172,7 +172,7 @@ class User implements UserInterface
 
     public function __toString(): string
     {
-        return $this->userName;
+        return $this->username;
     }
 
     public function getRoles()

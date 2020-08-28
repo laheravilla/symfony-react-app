@@ -7,7 +7,7 @@ security:
         database:
             entity:
                 class: App\Entity\User
-                property: userName
+                property: username
 
     firewalls:
         dev:
@@ -20,9 +20,11 @@ security:
             json_login:
             # Here authentication will happen (token generation)
                 check_path: /api/login_check
+                # Handle successful authentication
                 success_handler: lexik_jwt_authentication.handler.authentication_success
+                # Handle authentication failure (invalid credentials, no credentials, etc.)
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
-            # How to verify data send by users
+            # How to verify data sent by users
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
@@ -38,7 +40,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
