@@ -17,22 +17,26 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity("username")
  * @UniqueEntity("email")
  *
- * Allows GET method. All non listed methods do not have a route
- * Serialization: convert object to json
- * Normalization: convert object into array
- * Encoding: convert array into json
- * Groups allows to get only allowed data
+ * * Allows GET method. All non listed methods do not have a route
+ * * Serialization: convert object to json
+ * * Normalization: convert object into array
+ * * Encoding: convert array into json
+ * * Groups allows to get only allowed data
  *
  * @ApiResource(
+ *     normalizationContext={"groups"={"get"}},
  *     itemOperations={
  *          "get"={
  *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY')",
- *              "denormalization_context"={
- *                  "groups"={"put"}
+ *              "normalization_context"={
+ *                  "groups"={"get"}
  *              }
  *          },
  *          "put"={
  *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object === user",
+ *              "denormalization_context"={
+ *                  "groups"={"put"}
+ *              },
  *              "normalization_context"={
  *                  "groups"={"get"}
  *              }
@@ -42,6 +46,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "post"={
  *              "denormalization_context"={
  *                  "groups"={"post"}
+ *              },
+ *              "normalization_context"={
+ *                  "groups"={"get"}
  *              }
  *          }
  *      }
@@ -77,19 +84,19 @@ class User implements UserInterface
      * @Assert\NotBlank()
      * @Assert\Regex(
      *     pattern="/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{7,}/",
-     *     message="Password must be seven characters long and contain at least 1 digit, 1 upper case letter and 1 lower case letter"
+     *     message="Password must be 7 characters long and contain at least 1 digit, 1 upper case letter and 1 lower case letter"
      * )
      */
     private $password;
 
-    /**
-     * @Assert\NotBlank()
-     * @Assert\Expression(
-     *    "this.getPassword() === this.getRetypePassword()",
-     *     message="Passwords do not match"
-     * )
-     */
-    private $retypePassword;
+//    /**
+//     * @Assert\NotBlank()
+//     * @Assert\Expression(
+//     *    "this.getPassword() === this.getRepeatPassword()",
+//     *     message="Passwords do not match"
+//     * )
+//     */
+//    private $repeatPassword;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -216,16 +223,16 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getRetypePassword()
+    public function getRepeatPassword()
     {
-        return $this->retypePassword;
+        return $this->repeatPassword;
     }
 
     /**
-     * @param mixed $retypePassword
+     * @param mixed $repeatPassword
      */
-    public function setRetypePassword($retypePassword): void
+    public function setRepeatPassword($repeatPassword): void
     {
-        $this->retypePassword = $retypePassword;
+        $this->repeatPassword = $repeatPassword;
     }
 }

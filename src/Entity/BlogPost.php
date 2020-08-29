@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=BlogPostRepository::class)
  *
- * Allows GET method. All non listed methods do not have a route
+ * * Allows GET method. All non listed methods do not have a route
  * @ApiResource(
  *     itemOperations={
  *          "get",
