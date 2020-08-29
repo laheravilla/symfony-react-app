@@ -21,18 +21,30 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Serialization: convert object to json
  * Normalization: convert object into array
  * Encoding: convert array into json
- * Groups allows to read only allowed data
+ * Groups allows to get only allowed data
  *
  * @ApiResource(
  *     itemOperations={
- *     "get"={
-            "access_control"="is_granted('IS_AUTHENTICATED_FULLY')"
- *     }
- * },
- *     collectionOperations={"post"},
- *     normalizationContext={
-            "groups"={"read"}
- *     }
+ *          "get"={
+ *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY')",
+ *              "denormalization_context"={
+ *                  "groups"={"put"}
+ *              }
+ *          },
+ *          "put"={
+ *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object === user",
+ *              "normalization_context"={
+ *                  "groups"={"get"}
+ *              }
+ *          }
+ *     },
+ *     collectionOperations={
+ *          "post"={
+ *              "denormalization_context"={
+ *                  "groups"={"post"}
+ *              }
+ *          }
+ *      }
  * )
  */
 class User implements UserInterface
@@ -41,13 +53,16 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"read"})
+     * @Groups({"get"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"read"})
+     *
+     * User can only get and post username but cannot modify it
+     * @Groups({"get", "post"})
+     *
      * @Assert\NotBlank()
      * @Assert\Length(min=6, max=255)
      */
@@ -55,6 +70,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * User can only put and post his password
+     * @Groups({"put", "post"})
+     *
      * @Assert\NotBlank()
      * @Assert\Regex(
      *     pattern="/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{7,}/",
@@ -74,14 +93,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"read"})
+     * @Groups({"get", "post", "put"})
      * @Assert\NotBlank()
      */
     private $fullName;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"read"})
+     * @Groups({"post", "put"})
      * @Assert\NotBlank()
      * @Assert\Email()
      */
@@ -89,13 +108,13 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\BlogPost", mappedBy="author")
-     * @Groups({"read"})
+     * @Groups({"get"})
      */
     private $posts;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="author")
-     * @Groups({"read"})
+     * @Groups({"get"})
      */
     private $comments;
 
