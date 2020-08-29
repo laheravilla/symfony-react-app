@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f477cc5-ed23-472b-be24-e998a6e5c54f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/AuthoredEntitySubscriber.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/BlogPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/BlogPost.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,6 +145,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -174,7 +175,9 @@
       <workItem from="1598380752872" duration="335000" />
       <workItem from="1598409727707" duration="1305000" />
       <workItem from="1598496779956" duration="8446000" />
-      <workItem from="1598583333549" duration="7305000" />
+      <workItem from="1598583333549" duration="7649000" />
+      <workItem from="1598597177294" duration="39000" />
+      <workItem from="1598669936326" duration="1452000" />
     </task>
     <servers />
   </component>
@@ -194,6 +197,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2220" y="197" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598670065516">
+      <screen x="1366" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2220" y="197" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598670065516" />
     <state x="2400" y="248" width="408" height="588" key="#com.intellij.ide.util.MemberChooser" timestamp="1598590097315">
       <screen x="1366" y="0" width="1920" height="1080" />
     </state>

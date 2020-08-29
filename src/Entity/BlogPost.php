@@ -13,7 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * Allows GET method. All non listed methods do not have a route
  * @ApiResource(
- *     itemOperations={"get"},
+ *     itemOperations={
+ *          "get",
+ *          "put"={
+                "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object.getAuthor() === user"
+ *          }
+ *      },
  *     collectionOperations={
  *          "get",
  *          "post"={
