@@ -53,6 +53,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *      }
  * )
+ * @method bool needsRehash(UserInterface $user)
  */
 class User implements UserInterface
 {
@@ -231,8 +232,9 @@ class User implements UserInterface
     /**
      * @param mixed $repeatPassword
      */
-    public function setRepeatPassword($repeatPassword): void
+    public function setRepeatPassword(string $repeatPassword): self
     {
         $this->repeatPassword = $repeatPassword;
+        return $this;
     }
 }

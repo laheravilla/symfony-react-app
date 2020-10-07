@@ -5,7 +5,7 @@ namespace App\Composition;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
-trait AuthorComposition
+trait AuthoredEntityComposition
 {
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")

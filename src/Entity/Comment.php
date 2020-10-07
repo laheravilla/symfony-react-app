@@ -3,22 +3,36 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Composition\AuthorComposition;
+use App\Composition\AuthoredEntityComposition;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
  *
- * Allows GET method. All non listed methods do not have a route
  * @ApiResource(
- *     itemOperations={"get"},
- *     collectionOperations={"get"}
+ *     itemOperations={
+ *          "get",
+ *          "put"={
+ *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object.getAuthor() === user"
+ *          }
+ *      },
+ *     collectionOperations={
+ *          "get",
+ *          "post"={
+ *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY')"
+ *          }
+ *      },
+ *     denormalizationContext={
+ *          "groups"={"post"}
+ *     }
  * )
  */
-class Comment
+class Comment implements CreatedAtEntityInterface
 {
-    use AuthorComposition;
+    use AuthoredEntityComposition;
 
     /**
      * @ORM\Id()
@@ -29,6 +43,9 @@ class Comment
 
     /**
      * @ORM\Column(type="text", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=20, max=3000)
+     * @Groups({"post"})
      */
     private $content;
 
@@ -41,6 +58,12 @@ class Comment
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\BlogPost", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $post;
 
     public function getId(): ?int
     {
@@ -76,10 +99,27 @@ class Comment
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    /**
+     * @param \DateTimeInterface $createdAt
+     * @return CreatedAtEntityInterface
+     */
+    public function setCreatedAt(\DateTimeInterface $createdAt): CreatedAtEntityInterface
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getPost(): BlogPost
+    {
+        return $this->post;
+    }
+
+    public function setPost(BlogPost $post): self
+    {
+        $this->post = $post;
         return $this;
     }
 

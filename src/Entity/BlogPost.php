@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Composition\AuthorComposition;
+use App\Composition\AuthoredEntityComposition;
 use App\Repository\BlogPostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -16,20 +19,23 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     itemOperations={
  *          "get",
  *          "put"={
-                "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object.getAuthor() === user"
+ *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object.getAuthor() === user"
  *          }
  *      },
  *     collectionOperations={
  *          "get",
  *          "post"={
-                "access_control"="is_granted('IS_AUTHENTICATED_FULLY')"
+ *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY')"
  *          }
- *      }
+ *      },
+ *     denormalizationContext={
+ *           "groups"={"post"}
+ *     }
  * )
  */
-class BlogPost
+class BlogPost implements CreatedAtEntityInterface
 {
-    use AuthorComposition;
+    use AuthoredEntityComposition;
 
     /**
      * @ORM\Id()
@@ -41,25 +47,40 @@ class BlogPost
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Assert\Length(min=10)
+     * @Groups({"post"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="datetime", nullable=true, options={"default": "CURRENT_TIMESTAMP"})
-     * @Assert\NotBlank()
-     * @Assert\DateTime()
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
+     * @Groups({"post"})
      */
     private $slug;
 
-    public function __constructor()
+    /**
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=20)
+     * @Groups({"post"})
+     */
+    private $content;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="post")
+     * @Groups({"get"})
+     */
+    private $comments;
+
+    public function __construct()
     {
-        $this->createdAt = new \DateTime('now');
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,10 +105,13 @@ class BlogPost
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    /**
+     * @param \DateTimeInterface $createdAt
+     * @return CreatedAtEntityInterface
+     */
+    public function setCreatedAt(\DateTimeInterface $createdAt): CreatedAtEntityInterface
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -106,6 +130,32 @@ class BlogPost
     {
         $this->slug = $slug;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContent(): string
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param mixed $content
+     */
+    public function setContent($content): self
+    {
+        $this->content = $content;
+        return $this;
+    }
+
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
     }
 
     public function __toString(): string

@@ -20,10 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f477cc5-ed23-472b-be24-e998a6e5c54f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/FormatUsernameSubscriber.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/CreatedAtEntityInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/CreatedAtEntitySubscriber.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Composition/AuthorComposition.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Composition/AuthoredEntityComposition.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/BlogPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/BlogPost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/AuthoredEntitySubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/AuthoredEntitySubscriber.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,8 +154,9 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/JsProjects/React/udemy-react-app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -179,7 +185,17 @@
       <workItem from="1598496779956" duration="8446000" />
       <workItem from="1598583333549" duration="7649000" />
       <workItem from="1598597177294" duration="39000" />
-      <workItem from="1598669936326" duration="6908000" />
+      <workItem from="1598669936326" duration="7338000" />
+      <workItem from="1598848241504" duration="26000" />
+      <workItem from="1599123590910" duration="1117000" />
+      <workItem from="1599469195411" duration="1388000" />
+      <workItem from="1599485030953" duration="435000" />
+      <workItem from="1599658657109" duration="434000" />
+      <workItem from="1601385495501" duration="91000" />
+      <workItem from="1601397955775" duration="610000" />
+      <workItem from="1601952011408" duration="337000" />
+      <workItem from="1601952746102" duration="7823000" />
+      <workItem from="1602040510179" duration="5925000" />
     </task>
     <servers />
   </component>
@@ -197,20 +213,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="2220" y="197" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598670065516">
-      <screen x="1366" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2220" y="197" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598670065516" />
-    <state x="2400" y="248" width="408" height="588" key="#com.intellij.ide.util.MemberChooser" timestamp="1598590097315">
-      <screen x="1366" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2400" y="248" width="408" height="581" key="#com.intellij.ide.util.MemberChooser/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598590097315" />
-    <state x="2400" y="248" width="408" height="588" key="#com.intellij.ide.util.MemberChooser/0.27.1366.721/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598503631269" />
-    <state x="2422" y="265" width="549" height="547" key="NewPhpClassDialog" timestamp="1598676189176">
-      <screen x="1366" y="0" width="1920" height="1080" />
-    </state>
-    <state x="2422" y="265" width="549" height="547" key="NewPhpClassDialog/0.27.1366.701/1366.0.1920.1080@1366.0.1920.1080" timestamp="1598676189176" />
   </component>
 </project>
