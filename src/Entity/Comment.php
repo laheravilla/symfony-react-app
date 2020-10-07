@@ -51,6 +51,8 @@ class Comment implements CreatedAtEntityInterface
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\NotBlank()
+     * @Groups({"post"})
      */
     private $isPublished;
 
@@ -62,6 +64,7 @@ class Comment implements CreatedAtEntityInterface
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\BlogPost", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"post"})
      */
     private $post;
 

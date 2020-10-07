@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Composition\AuthoredEntityComposition;
 use App\Repository\BlogPostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -75,6 +76,7 @@ class BlogPost implements CreatedAtEntityInterface
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="post")
      * @Groups({"get"})
+     * @ApiSubresource()
      */
     private $comments;
 

@@ -90,14 +90,15 @@ class User implements UserInterface
      */
     private $password;
 
-//    /**
-//     * @Assert\NotBlank()
-//     * @Assert\Expression(
-//     *    "this.getPassword() === this.getRepeatPassword()",
-//     *     message="Passwords do not match"
-//     * )
-//     */
-//    private $repeatPassword;
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Expression(
+     *    "this.getPassword() === this.getRepeatPassword()",
+     *     message="Passwords do not match"
+     * )
+     * @Groups({"put", "post"})
+     */
+    private $repeatPassword;
 
     /**
      * @ORM\Column(type="string", length=255)
