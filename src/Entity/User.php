@@ -69,7 +69,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      *
      * User can only get and post username but cannot modify it
-     * @Groups({"get", "post", "get-comment-with-author"})
+     * @Groups({"get", "post", "get-comment-with-author", "get-post-with-author"})
      *
      * @Assert\NotBlank()
      * @Assert\Length(min=6, max=255)
@@ -102,7 +102,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"get", "post", "put", "get-comment-with-author"})
+     * @Groups({"get", "post", "put", "get-comment-with-author", "get-post-with-author"})
      * @Assert\NotBlank()
      */
     private $fullName;
