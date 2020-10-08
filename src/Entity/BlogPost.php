@@ -4,11 +4,11 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
-use App\Composition\AuthoredEntityComposition;
 use App\Repository\BlogPostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -34,10 +34,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     }
  * )
  */
-class BlogPost implements CreatedAtEntityInterface
+class BlogPost implements AuthoredEntityInterface, CreatedAtEntityInterface
 {
-    use AuthoredEntityComposition;
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -79,6 +77,12 @@ class BlogPost implements CreatedAtEntityInterface
      * @ApiSubresource()
      */
     private $comments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
 
     public function __construct()
     {
@@ -163,5 +167,16 @@ class BlogPost implements CreatedAtEntityInterface
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    public function getAuthor(): UserInterface
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(UserInterface $author): AuthoredEntityInterface
+    {
+        $this->author = $author;
+        return $this;
     }
 }

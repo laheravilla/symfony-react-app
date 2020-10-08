@@ -3,9 +3,9 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Composition\AuthoredEntityComposition;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -23,21 +23,27 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "get",
  *          "post"={
  *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY')"
- *          }
+ *          },
  *      },
+ *     subresourceOperations={
+ *          "api_blog_posts_comments_get_subresource"={
+ *               "normalization_context"={
+ *                  "groups"={"get-comment-with-author"}
+ *              }
+ *          }
+ *     },
  *     denormalizationContext={
  *          "groups"={"post"}
  *     }
  * )
  */
-class Comment implements CreatedAtEntityInterface
+class Comment implements AuthoredEntityInterface, CreatedAtEntityInterface
 {
-    use AuthoredEntityComposition;
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"get-comment-with-author"})
      */
     private $id;
 
@@ -45,14 +51,14 @@ class Comment implements CreatedAtEntityInterface
      * @ORM\Column(type="text", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(min=20, max=3000)
-     * @Groups({"post"})
+     * @Groups({"post", "get-comment-with-author"})
      */
     private $content;
 
     /**
      * @ORM\Column(type="boolean")
      * @Assert\NotBlank()
-     * @Groups({"post"})
+     * @Groups({"get-comment-with-author", "post"})
      */
     private $isPublished;
 
@@ -67,6 +73,13 @@ class Comment implements CreatedAtEntityInterface
      * @Groups({"post"})
      */
     private $post;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     * @Groups({"get-comment-with-author"})
+     */
+    private $author;
 
     public function getId(): ?int
     {
@@ -129,5 +142,16 @@ class Comment implements CreatedAtEntityInterface
     public function __toString(): string
     {
         return $this->content;
+    }
+
+    public function getAuthor(): UserInterface
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(UserInterface $author): AuthoredEntityInterface
+    {
+        $this->author = $author;
+        return $this;
     }
 }
