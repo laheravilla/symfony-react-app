@@ -33,16 +33,23 @@ class AppFixtures extends Fixture
         return $userRepository->findAll();
     }
 
+    public function getPosts(ObjectManager $manager)
+    {
+        $postRepository = $manager->getRepository(BlogPost::class);
+        return $postRepository->findAll();
+    }
+
     public function loadBlogPosts(ObjectManager $manager)
     {
 
         $authors = $this->getAuthors($manager);
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $post = (new BlogPost())
                 ->setAuthor($authors[array_rand($authors, 1)])
                 ->setTitle('My post '.$i)
                 ->setSlug('my-post-'.$i)
+                ->setContent("This is my dummy content number ".$i)
                 ->setCreatedAt(new \DateTime('now'));
             $manager->persist($post);
         }
@@ -52,14 +59,17 @@ class AppFixtures extends Fixture
     public function loadComments(ObjectManager $manager)
     {
         $authors = $this->getAuthors($manager);
+        $posts = $this->getPosts($manager);
         $isPublishedValues = [true, false];
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $comment = (new Comment())
                 ->setAuthor($authors[array_rand($authors, 1)])
                 ->setContent('Message content '.$i)
                 ->setCreatedAt(new \DateTime('now'))
+                ->setPost($posts[array_rand($posts, 1)])
                 ->setIsPublished($isPublishedValues[array_rand($isPublishedValues, 1)]);
+
             $manager->persist($comment);
         }
         $manager->flush();
@@ -68,6 +78,10 @@ class AppFixtures extends Fixture
     public function loadUsers(ObjectManager $manager)
     {
         $fullNames = [
+            'Admin',
+            'SuperAdmin',
+            'Writer',
+            'Editor',
             'John Doe',
             'Bob Lastname',
             'Franck Lastname',
@@ -77,19 +91,31 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < count($fullNames); $i++) {
             $user = new User();
-            if ($i === 0) {
-                $user->setUsername('admin');
-                $user->setPassword($this->passwordEncoder->encodePassword($user, 'admin'));
-                $user->setRetypePassword($this->passwordEncoder->encodePassword($user, 'admin'));
-                $user->setEmail('admin@mail.com');
-                $user->setFullName('Admin');
+            if ($fullNames[$i] === "Admin") {
+                $user->setPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setRoles([User::ROLE_ADMIN]);
+            }  elseif ($fullNames[$i] === "SuperAdmin") {
+                $user->setPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setRoles([User::ROLE_SUPER_ADMIN]);
+            } elseif ($fullNames[$i] === "Writer") {
+                $user->setPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setRoles([User::ROLE_WRITER]);
+            } elseif ($fullNames[$i] === "Editor") {
+                $user->setPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setRoles([User::ROLE_EDITOR]);
             } else {
-                $user->setUsername(strtolower(str_replace(' ', '.', $fullNames[$i])));
                 $user->setPassword($this->passwordEncoder->encodePassword($user, 'pass'));
-                $user->setRetypePassword($this->passwordEncoder->encodePassword($user, 'pass'));
-                $user->setEmail(strtolower(str_replace(' ', '.', $fullNames[$i])).'@mail.com');
-                $user->setFullName($fullNames[$i]);
+                $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, 'pass'));
+                $user->setRoles([User::DEFAULT_ROLES]);
             }
+
+            $user->setUsername(strtolower(str_replace(' ', '.', $fullNames[$i])));
+            $user->setEmail(strtolower(str_replace(' ', '.', $fullNames[$i])).'@mail.com');
+            $user->setFullName($fullNames[$i]);
             $manager->persist($user);
         }
         $manager->flush();
