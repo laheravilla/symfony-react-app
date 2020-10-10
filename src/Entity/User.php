@@ -17,6 +17,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @UniqueEntity("username")
  * @UniqueEntity("email")
  *
+ * * Denormalization_context: WRITE data (post, put)
+ * * Normalization_context: READ data (get)
+ *
  * * Allows GET method. All non listed methods do not have a route
  * * Serialization: convert object to json
  * * Normalization: convert object into array
@@ -116,7 +119,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"post", "put"})
+     * @Groups({"post", "put", "get-admin"})
      * @Assert\NotBlank()
      * @Assert\Email()
      */
@@ -124,6 +127,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json", length=200)
+     * @Groups({"get-admin"})
      */
     private $roles;
 
