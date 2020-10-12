@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f477cc5-ed23-472b-be24-e998a6e5c54f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Serializer/UserContextBuilder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Serializer/UserAttributeNormalizer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
@@ -194,7 +194,8 @@
       <workItem from="1602081690664" duration="40000" />
       <workItem from="1602126110339" duration="5045000" />
       <workItem from="1602226025924" duration="9000" />
-      <workItem from="1602244453707" duration="2542000" />
+      <workItem from="1602244453707" duration="5321000" />
+      <workItem from="1602471246053" duration="1744000" />
     </task>
     <servers />
   </component>
