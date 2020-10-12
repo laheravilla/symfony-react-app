@@ -27,7 +27,8 @@ security:
             # How to verify data sent by users
             guard:
                 authenticators:
-                    - lexik_jwt_authentication.jwt_token_authenticator
+#                    - lexik_jwt_authentication.jwt_token_authenticator
+                    - App\Security\TokenAuthenticator
 
         #    provider: users_in_memory
 
