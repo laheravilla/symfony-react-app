@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -90,7 +91,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      *
      * User can only put and post his password
-     * @Groups({"put", "post"})
+     * @Groups({"post"})
      *
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -101,14 +102,49 @@ class User implements UserInterface
     private $password;
 
     /**
+     * Virtual property
+     *
      * @Assert\NotBlank()
      * @Assert\Expression(
      *    "this.getPassword() === this.getRepeatPassword()",
      *     message="Passwords do not match"
      * )
-     * @Groups({"put", "post"})
+     * @Groups({"post"})
      */
     private $repeatPassword;
+
+    /**
+     * Virtual property
+     *
+     * @Groups({"put-reset-password"})
+     * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern="/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{7,}/",
+     *     message="Password must be 7 characters long and contain at least 1 digit, 1 upper case letter and 1 lower case letter"
+     * )
+     */
+    private $newPassword;
+
+    /**
+     * Virtual property
+     *
+     * @Groups({"put-reset-password"})
+     * @Assert\NotBlank()
+     * @Assert\Expression(
+     *    "this.getNewPassword() === this.getNewRepeatPassword()",
+     *     message="Passwords do not match"
+     * )
+     */
+    private $newRepeatPassword;
+
+    /**
+     * Virtual property
+     *
+     * @Groups({"put-reset-password"})
+     * @Assert\NotBlank()
+     * @UserPassword()
+     */
+    private $oldPassword;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -163,18 +199,6 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
 
         return $this;
     }
@@ -245,20 +269,59 @@ class User implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
-    /**
-     * @return mixed
-     */
-    public function getRepeatPassword()
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getRepeatPassword(): ?string
     {
         return $this->repeatPassword;
     }
 
-    /**
-     * @param mixed $repeatPassword
-     */
     public function setRepeatPassword(string $repeatPassword): self
     {
         $this->repeatPassword = $repeatPassword;
+        return $this;
+    }
+
+    public function getNewPassword(): ?string
+    {
+        return $this->newPassword;
+    }
+
+    public function setNewPassword($newPassword): self
+    {
+        $this->newPassword = $newPassword;
+        return $this;
+    }
+
+    public function getNewRepeatPassword(): ?string
+    {
+        return $this->newRepeatPassword;
+    }
+
+    public function setNewRepeatPassword($newRepeatPassword): self
+    {
+        $this->newRepeatPassword = $newRepeatPassword;
+        return $this;
+    }
+
+    public function getOldPassword(): ?string
+    {
+        return $this->oldPassword;
+    }
+
+    public function setOldPassword($oldPassword): self
+    {
+        $this->oldPassword = $oldPassword;
         return $this;
     }
 }

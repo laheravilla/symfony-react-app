@@ -32,6 +32,7 @@ class UserAttributeNormalizer implements ContextAwareNormalizerInterface, Serial
         return $data instanceof User;
     }
 
+    // Convert object into array
     public function normalize($object, $format = null, array $context = [])
     {
         if ($this->isUserHimself($object)) {
