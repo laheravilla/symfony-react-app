@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Controller\ResetPasswordAction;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -44,6 +45,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  *              "normalization_context"={
  *                  "groups"={"get"}
  *              }
+ *          },
+ *          "put-reset-password"={
+ *              "access_control"="is_granted('IS_AUTHENTICATED_FULLY') and object === user",
+ *              "method"="PUT",
+ *              "path"="/users/{id}/reset-password",
+ *              "controller"=ResetPasswordAction::class,
+ *              "denormalization_context"={
+ *                  "groups"={"put-reset-password"}
+ *              },
  *          }
  *     },
  *     collectionOperations={
@@ -82,8 +92,8 @@ class User implements UserInterface
      * User can only get and post username but cannot modify it
      * @Groups({"get", "post", "get-comment-with-author", "get-post-with-author"})
      *
-     * @Assert\NotBlank()
-     * @Assert\Length(min=6, max=255)
+     * @Assert\NotBlank(groups={"post"})
+     * @Assert\Length(min=6, max=255, groups={"post"})
      */
     private $username;
 
@@ -93,10 +103,11 @@ class User implements UserInterface
      * User can only put and post his password
      * @Groups({"post"})
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"post"})
      * @Assert\Regex(
      *     pattern="/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{7,}/",
-     *     message="Password must be 7 characters long and contain at least 1 digit, 1 upper case letter and 1 lower case letter"
+     *     message="Password must be 7 characters long and contain at least 1 digit, 1 upper case letter and 1 lower case letter",
+     *     groups={"post"}
      * )
      */
     private $password;
@@ -104,10 +115,11 @@ class User implements UserInterface
     /**
      * Virtual property
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"post"})
      * @Assert\Expression(
      *    "this.getPassword() === this.getRepeatPassword()",
-     *     message="Passwords do not match"
+     *     message="Passwords do not match",
+     *     groups={"post"}
      * )
      * @Groups({"post"})
      */
@@ -149,15 +161,17 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"get", "post", "put", "get-comment-with-author", "get-post-with-author"})
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"post", "put"})
+     * @Assert\Length(min=5, max="255", groups={"post", "put"})
      */
     private $fullName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"post", "put", "get-admin", "get-owner"})
-     * @Assert\NotBlank()
-     * @Assert\Email()
+     * @Assert\NotBlank(groups={"post"})
+     * @Assert\Email(groups={"post", "put"})
+     * @Assert\Length(min="6", max="255", groups={"post", "put"})
      */
     private $email;
 
