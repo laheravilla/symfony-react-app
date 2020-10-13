@@ -116,6 +116,7 @@ class AppFixtures extends Fixture
             $user->setUsername(strtolower(str_replace(' ', '.', $fullNames[$i])));
             $user->setEmail(strtolower(str_replace(' ', '.', $fullNames[$i])).'@mail.com');
             $user->setFullName($fullNames[$i]);
+            $user->setEnabled(true);
             $manager->persist($user);
         }
         $manager->flush();

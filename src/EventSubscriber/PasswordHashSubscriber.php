@@ -17,7 +17,6 @@ class PasswordHashSubscriber implements EventSubscriberInterface
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
-
         $this->passwordEncoder = $passwordEncoder;
     }
 
