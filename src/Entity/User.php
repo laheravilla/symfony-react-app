@@ -129,10 +129,11 @@ class User implements UserInterface
      * Virtual property
      *
      * @Groups({"put-reset-password"})
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"put-reset-password"})
      * @Assert\Regex(
      *     pattern="/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{7,}/",
-     *     message="Password must be 7 characters long and contain at least 1 digit, 1 upper case letter and 1 lower case letter"
+     *     message="Password must be 7 characters long and contain at least 1 digit, 1 upper case letter and 1 lower case letter",
+     *     groups={"put-reset-password"}
      * )
      */
     private $newPassword;
@@ -141,10 +142,11 @@ class User implements UserInterface
      * Virtual property
      *
      * @Groups({"put-reset-password"})
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"put-reset-password"})
      * @Assert\Expression(
      *    "this.getNewPassword() === this.getNewRepeatPassword()",
-     *     message="Passwords do not match"
+     *     message="Passwords do not match",
+     *     groups={"put-reset-password"}
      * )
      */
     private $newRepeatPassword;
@@ -153,8 +155,8 @@ class User implements UserInterface
      * Virtual property
      *
      * @Groups({"put-reset-password"})
-     * @Assert\NotBlank()
-     * @UserPassword()
+     * @Assert\NotBlank(groups={"put-reset-password"})
+     * @UserPassword(groups={"put-reset-password"})
      */
     private $oldPassword;
 
