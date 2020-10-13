@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\BlogPost;
 use App\Entity\Comment;
 use App\Entity\User;
+use App\Security\TokenGenerator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -14,10 +15,15 @@ class AppFixtures extends Fixture
     /** @var UserPasswordEncoderInterface */
     private $passwordEncoder;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
-    {
+    /** @var TokenGenerator */
+    private $tokenGenerator;
 
+    public function __construct(
+        UserPasswordEncoderInterface $passwordEncoder,
+        TokenGenerator $tokenGenerator
+    ){
         $this->passwordEncoder = $passwordEncoder;
+        $this->tokenGenerator = $tokenGenerator;
     }
 
     public function load(ObjectManager $manager)
@@ -94,29 +100,34 @@ class AppFixtures extends Fixture
             if ($fullNames[$i] === "Admin") {
                 $user->setPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
                 $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setEnabled(true);
                 $user->setRoles([User::ROLE_ADMIN]);
             }  elseif ($fullNames[$i] === "SuperAdmin") {
                 $user->setPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
                 $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setEnabled(true);
                 $user->setRoles([User::ROLE_SUPER_ADMIN]);
             } elseif ($fullNames[$i] === "Writer") {
                 $user->setPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
                 $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setEnabled(true);
                 $user->setRoles([User::ROLE_WRITER]);
             } elseif ($fullNames[$i] === "Editor") {
                 $user->setPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
                 $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, strtolower($fullNames[$i])));
+                $user->setEnabled(true);
                 $user->setRoles([User::ROLE_EDITOR]);
             } else {
                 $user->setPassword($this->passwordEncoder->encodePassword($user, 'pass'));
                 $user->setRepeatPassword($this->passwordEncoder->encodePassword($user, 'pass'));
+                $user->setConfirmationToken($this->tokenGenerator->getRandomSecureToken());
                 $user->setRoles([User::DEFAULT_ROLES]);
             }
 
             $user->setUsername(strtolower(str_replace(' ', '.', $fullNames[$i])));
             $user->setEmail(strtolower(str_replace(' ', '.', $fullNames[$i])).'@mail.com');
             $user->setFullName($fullNames[$i]);
-            $user->setEnabled(true);
+
             $manager->persist($user);
         }
         $manager->flush();
