@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f477cc5-ed23-472b-be24-e998a6e5c54f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entity/UserConfirmation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/EventSubscriber/UserConfirmationSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +197,7 @@
       <workItem from="1602484817212" duration="43000" />
       <workItem from="1602484886407" duration="109000" />
       <workItem from="1602525877453" duration="2184000" />
-      <workItem from="1602557265225" duration="3997000" />
+      <workItem from="1602557265225" duration="4974000" />
     </task>
     <servers />
   </component>
