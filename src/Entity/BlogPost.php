@@ -90,9 +90,18 @@ class BlogPost implements AuthoredEntityInterface, CreatedAtEntityInterface
      */
     private $author;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\image")
+     * @ORM\JoinTable()
+     * @ApiSubresource()
+     * @Groups({"post"})
+     */
+    private $images;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,40 +136,27 @@ class BlogPost implements AuthoredEntityInterface, CreatedAtEntityInterface
         return $this;
     }
 
-    /**
-     * @return mixed|null
-     */
     public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    /**
-     * @param mixed $slug
-     */
     public function setSlug($slug): self
     {
         $this->slug = $slug;
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getContent(): string
     {
         return $this->content;
     }
 
-    /**
-     * @param mixed $content
-     */
     public function setContent($content): self
     {
         $this->content = $content;
         return $this;
     }
-
 
     /**
      * @return Collection|Comment[]
@@ -183,6 +179,30 @@ class BlogPost implements AuthoredEntityInterface, CreatedAtEntityInterface
     public function setAuthor(UserInterface $author): AuthoredEntityInterface
     {
         $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+        }
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+        }
         return $this;
     }
 }
