@@ -27,7 +27,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  *          "id": "exact",
  *          "title": "partial",
  *          "content": "partial",
- *          "author": "exact"
+ *          "author": "exact",
+ *          "author.fullName": "partial"
  *     }
  * )
  * @ApiFilter(
