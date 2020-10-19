@@ -5,3 +5,7 @@ api_platform:
         json: ['application/merge-patch+json']
     swagger:
         versions: [3]
+
+    # Set name of custom filter parameter here
+    #    collection:
+    #        order_parameter_name: "_order"
