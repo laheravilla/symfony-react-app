@@ -91,10 +91,10 @@ class BlogPost implements AuthoredEntityInterface, CreatedAtEntityInterface
     private $author;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\image")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
      * @ORM\JoinTable()
      * @ApiSubresource()
-     * @Groups({"post"})
+     * @Groups({"post", "get-post-with-author"})
      */
     private $images;
 
