@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass=CommentRepository::class)
  *
  * @ApiResource(
+ *     attributes={"order"={"createdAt":"DESC"}},
  *     itemOperations={
  *          "get",
  *          "put"={
@@ -64,6 +65,7 @@ class Comment implements AuthoredEntityInterface, CreatedAtEntityInterface
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"get-comment-with-author", "post"})
      */
     private $createdAt;
 
