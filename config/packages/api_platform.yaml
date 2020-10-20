@@ -6,6 +6,18 @@ api_platform:
     swagger:
         versions: [3]
 
-    # Set name of custom filter parameter here
-    #    collection:
-    #        order_parameter_name: "_order"
+    collection:
+        pagination:
+            enabled: true
+            items_per_page: 10
+            client_enabled: true
+            client_items_per_page: true # Disabled by default. Configurable in resources as well
+            items_per_page_parameter_name: itemsPerPage
+            maximum_items_per_page: 50 # Configurable in resources as well
+            partial: false # Have next item when scrolling (like in Facebook wall)
+            client_partial: true
+            partial_parameter_name: "partial"
+#            page_parameter_name: _page # Change name of parameter
+#            enabled_parameter_name: pagination
+
+#        order_parameter_name: "_order"
