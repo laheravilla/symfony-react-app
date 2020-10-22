@@ -190,7 +190,7 @@ class BlogPost implements AuthoredEntityInterface, CreatedAtEntityInterface
         return $this;
     }
 
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
@@ -209,12 +209,7 @@ class BlogPost implements AuthoredEntityInterface, CreatedAtEntityInterface
         return $this->comments;
     }
 
-    public function __toString(): string
-    {
-        return $this->title;
-    }
-
-    public function getAuthor(): UserInterface
+    public function getAuthor(): ?User
     {
         return $this->author;
     }
@@ -247,5 +242,10 @@ class BlogPost implements AuthoredEntityInterface, CreatedAtEntityInterface
             $this->images->removeElement($image);
         }
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->title;
     }
 }

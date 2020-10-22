@@ -275,11 +275,6 @@ class User implements UserInterface
         return $this->comments;
     }
 
-    public function __toString(): string
-    {
-        return $this->username;
-    }
-
     public function getRoles(): array
     {
         return $this->roles;
@@ -388,5 +383,10 @@ class User implements UserInterface
     {
         $this->passwordChangeDate = $passwordChangeDate;
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->username;
     }
 }

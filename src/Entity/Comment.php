@@ -130,7 +130,7 @@ class Comment implements AuthoredEntityInterface, CreatedAtEntityInterface
     /**
      * @return mixed
      */
-    public function getPost(): BlogPost
+    public function getPost(): ?BlogPost
     {
         return $this->post;
     }
@@ -141,12 +141,7 @@ class Comment implements AuthoredEntityInterface, CreatedAtEntityInterface
         return $this;
     }
 
-    public function __toString(): string
-    {
-        return $this->content;
-    }
-
-    public function getAuthor(): UserInterface
+    public function getAuthor(): ?User
     {
         return $this->author;
     }
@@ -155,5 +150,10 @@ class Comment implements AuthoredEntityInterface, CreatedAtEntityInterface
     {
         $this->author = $author;
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return substr($this->content, 0, 20) . "...";
     }
 }
