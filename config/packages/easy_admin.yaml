@@ -10,3 +10,10 @@ easy_admin:
             class: App\Entity\Comment
         Image:
             class: App\Entity\Image
+            list:
+                fields:
+                    - id
+                    - { property: "url", type: "image", label: "Image" }
+            form:
+                fields:
+                    - { property: "file", type: "vich_image", download_link: false, label: false }
