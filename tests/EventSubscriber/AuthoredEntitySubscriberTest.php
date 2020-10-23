@@ -55,6 +55,14 @@ class AuthoredEntitySubscriberTest extends TestCase
         (new AuthoredEntitySubscriber($tokenStorageMock))->getAuthenticatedUser($eventMock);
     }
 
+    public function testNullToken()
+    {
+        $tokenStorageMock = $this->getTokenStorageMock();
+        $eventMock = $this->getEventMock("POST", new class {});
+
+        (new AuthoredEntitySubscriber($tokenStorageMock))->getAuthenticatedUser($eventMock);
+    }
+
     /**
      * @return MockObject|TokenStorageInterface
      */
