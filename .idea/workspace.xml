@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3f477cc5-ed23-472b-be24-e998a6e5c54f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/AuthoredEntitySubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/AuthoredEntitySubscriber.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/EventSubscriber/AuthoredEntitySubscriberTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/EventSubscriber/AuthoredEntitySubscriberTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -231,7 +230,7 @@
       <workItem from="1603181429865" duration="1315000" />
       <workItem from="1603248745474" duration="9154000" />
       <workItem from="1603335600215" duration="11033000" />
-      <workItem from="1603421551356" duration="7980000" />
+      <workItem from="1603421551356" duration="8661000" />
     </task>
     <servers />
   </component>

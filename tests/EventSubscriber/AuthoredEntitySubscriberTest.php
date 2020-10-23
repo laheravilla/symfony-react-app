@@ -26,24 +26,33 @@ class AuthoredEntitySubscriberTest extends TestCase
         );
     }
 
-    public function testSetAuthorCall()
+
+    /**
+     * Test several cases by providing different data
+     * @return array[]
+     */
+    public function providerSetAuthorCall(): array
     {
-        $entityMock = $this->getEntityMock(BlogPost::class, true);
+        return [
+            [BlogPost::class, true, "POST"],
+            [BlogPost::class, false, "GET"],
+            ["NonExisting", false, "POST"]
+        ];
+    }
+
+    /**
+     * @dataProvider providerSetAuthorCall
+     * @param string $className
+     * @param bool $shouldCallSetAuthor
+     * @param string $method
+     */
+    public function testSetAuthorCall(string $className, bool $shouldCallSetAuthor, string $method)
+    {
+        $entityMock = $this->getEntityMock($className, $shouldCallSetAuthor);
         $tokenStorageMock = $this->getTokenStorageMock();
-        $eventMock = $this->getEventMock("POST", $entityMock);
+        $eventMock = $this->getEventMock($method, $entityMock);
 
-        (new AuthoredEntitySubscriber($tokenStorageMock))->getAuthenticatedUser(
-            $eventMock
-        );
-
-        // Non existing class
-        $nonExistingEntityMock = $this->getEntityMock("NonExisting", false);
-        $tokenStorageMock = $this->getTokenStorageMock();
-        $eventMock = $this->getEventMock("GET", $nonExistingEntityMock);
-
-        (new AuthoredEntitySubscriber($tokenStorageMock))->getAuthenticatedUser(
-            $eventMock
-        );
+        (new AuthoredEntitySubscriber($tokenStorageMock))->getAuthenticatedUser($eventMock);
     }
 
     /**
