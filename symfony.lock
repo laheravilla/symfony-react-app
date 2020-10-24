@@ -16,6 +16,36 @@
             "src/Entity/.gitignore"
         ]
     },
+    "behat/behat": {
+        "version": "v3.7.0"
+    },
+    "behat/gherkin": {
+        "version": "v4.6.2"
+    },
+    "behat/mink": {
+        "version": "v1.8.1"
+    },
+    "behat/mink-browserkit-driver": {
+        "version": "v1.3.4"
+    },
+    "behat/mink-extension": {
+        "version": "2.3.1"
+    },
+    "behat/symfony2-extension": {
+        "version": "2.1.5"
+    },
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
+    "behatch/contexts": {
+        "version": "3.3.0"
+    },
+    "coduo/php-matcher": {
+        "version": "3.2.3"
+    },
+    "coduo/php-to-string": {
+        "version": "2.0.2"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.10.99.1"
     },
@@ -132,8 +162,14 @@
     "fig/link-util": {
         "version": "1.1.1"
     },
+    "friends-of-behat/mink-extension": {
+        "version": "2.3.1"
+    },
     "jms/metadata": {
         "version": "2.3.0"
+    },
+    "justinrainbow/json-schema": {
+        "version": "5.2.10"
     },
     "lcobucci/jwt": {
         "version": "3.3.3"
@@ -173,6 +209,9 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.3"
+    },
+    "openlss/lib-array2xml": {
+        "version": "1.0.0"
     },
     "pagerfanta/pagerfanta": {
         "version": "v2.4.1"
@@ -216,6 +255,9 @@
     "symfony/asset": {
         "version": "v4.4.11"
     },
+    "symfony/browser-kit": {
+        "version": "v4.4.15"
+    },
     "symfony/cache": {
         "version": "v4.4.11"
     },
@@ -238,6 +280,9 @@
             "config/bootstrap.php"
         ]
     },
+    "symfony/css-selector": {
+        "version": "v4.4.15"
+    },
     "symfony/debug": {
         "version": "v4.4.11"
     },
@@ -249,6 +294,9 @@
     },
     "symfony/doctrine-bridge": {
         "version": "v4.4.11"
+    },
+    "symfony/dom-crawler": {
+        "version": "v4.4.15"
     },
     "symfony/dotenv": {
         "version": "v4.4.11"
