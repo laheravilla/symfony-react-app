@@ -10,10 +10,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 
 /**
+ * Run "APP_ENV=test php -d variables_order=EGPCS -S 127.0.0.1:8000 -t public/"
  * @see http://behat.org/en/latest/quick_start.html
  */
 class FeatureContext extends RestContext
 {
+    const USERS = ["admin" => "admin"];
+    const AUTH_URL = "/api/login_check";
+    const AUTH_JSON = '
+        {
+            "username": "%s",
+            "password": "%s"
+        }
+    ';
+
     /** @var AppFixtures */
     private $fixtures;
     /** @var EntityManagerInterface */
@@ -30,6 +40,30 @@ class FeatureContext extends RestContext
         $this->fixtures = $fixtures;
         $this->entityManager = $entityManager;
         $this->matcher = new PHPMatcher();
+    }
+
+    /**
+     * @Given I am authenticated as :user
+     */
+    public function iAmAuthenticatedAs($user)
+    {
+        $this->request->setHttpHeader("Content-type", "application/ld+json");
+        $this->request->send(
+            "POST",
+            $this->locatePath(session_cache_limiter(self::AUTH_URL)),
+            [],
+            [],
+            sprintf(self::AUTH_JSON, $user, self::USERS[$user])
+        );
+
+        $json = json_decode($this->request->getContent(), true);
+
+        // May sure the token was returned
+        $this->assertTrue(isset($json["token"]));
+
+        $token = $json["token"];
+
+        $this->request->setHttpHeader("Authorization", "Bearer $token");
     }
 
     /**

@@ -21,8 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3f477cc5-ed23-472b-be24-e998a6e5c54f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/AuthoredEntitySubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/AuthoredEntitySubscriber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/EventSubscriber/AuthoredEntitySubscriberTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/EventSubscriber/AuthoredEntitySubscriberTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/blog_posts.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/blog_posts.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,6 +145,22 @@
       <path value="$PROJECT_DIR$/vendor/symfony/monolog-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/monolog-bridge" />
       <path value="$PROJECT_DIR$/vendor/symfony/phpunit-bridge" />
+      <path value="$PROJECT_DIR$/vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/vendor/behat/behat" />
+      <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/vendor/behat/mink" />
+      <path value="$PROJECT_DIR$/vendor/behat/mink-extension" />
+      <path value="$PROJECT_DIR$/vendor/behat/symfony2-extension" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/vendor/behat/mink-browserkit-driver" />
+      <path value="$PROJECT_DIR$/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/vendor/behatch/contexts" />
+      <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor/friends-of-behat/mink-extension" />
+      <path value="$PROJECT_DIR$/vendor/coduo/php-to-string" />
+      <path value="$PROJECT_DIR$/vendor/coduo/php-matcher" />
+      <path value="$PROJECT_DIR$/vendor/openlss/lib-array2xml" />
     </include_path>
   </component>
   <component name="ProjectId" id="1gWqm7bQmxl5FlqKN0Vt2XtrZ68" />
@@ -232,6 +248,9 @@
       <workItem from="1603248745474" duration="9154000" />
       <workItem from="1603335600215" duration="11033000" />
       <workItem from="1603421551356" duration="9592000" />
+      <workItem from="1603684325399" duration="3116000" />
+      <workItem from="1603698468215" duration="18000" />
+      <workItem from="1603771654088" duration="2195000" />
     </task>
     <servers />
   </component>
